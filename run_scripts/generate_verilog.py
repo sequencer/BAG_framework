@@ -15,7 +15,7 @@ def run_main():
     model_fname = 'verilog.sv'
 
     with open(cell_map_fname, 'r') as f:
-        cell_map = yaml.load(f)
+        cell_map = yaml.safe_load(f)
 
     jinja_env = Environment(loader=FileSystemLoader(verilog_dir))
 

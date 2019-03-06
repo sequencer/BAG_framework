@@ -326,7 +326,7 @@ class SkillInterface(DbAccess):
                          def_files=to_skill_list_str(tb_config['def_files']),
                          tech_lib=self.db_config['schematic']['tech_lib'],
                          result_file='{result_file}')
-        output = yaml.load(self._eval_skill(cmd, out_file='result_file'))
+        output = yaml.safe_load(self._eval_skill(cmd, out_file='result_file'))
         return tb_config['default_env'], output['corners'], output['parameters'], output['outputs']
 
     def get_testbench_info(self, tb_lib, tb_cell):
@@ -354,7 +354,7 @@ class SkillInterface(DbAccess):
         cmd = cmd.format(tb_lib=tb_lib,
                          tb_cell=tb_cell,
                          result_file='{result_file}')
-        output = yaml.load(self._eval_skill(cmd, out_file='result_file'))
+        output = yaml.safe_load(self._eval_skill(cmd, out_file='result_file'))
         return output['enabled_corners'], output['corners'], output['parameters'], output['outputs']
 
     def update_testbench(self,
@@ -561,8 +561,8 @@ class SkillInterface(DbAccess):
         cell_dir : str
             path to the cell directory.
         """
-        # use yaml.load to remove outermost quotation marks
-        lib_dir = yaml.load(self._eval_skill('get_lib_directory( "%s" )' % lib_name))
+        # use yaml.safe_load to remove outermost quotation marks
+        lib_dir = yaml.safe_load(self._eval_skill('get_lib_directory( "%s" )' % lib_name))
         if not lib_dir:
             raise ValueError('Library %s not found.' % lib_name)
         return os.path.join(lib_dir, cell_name)

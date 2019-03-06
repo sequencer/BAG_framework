@@ -143,7 +143,7 @@ def setup_submodule_links(module_list, repo_path):
 
 def run_main():
     with open('bag_submodules.yaml', 'r') as f:
-        modules_info = yaml.load(f)
+        modules_info = yaml.safe_load(f)
 
     module_list = [(key, modules_info[key]) for key in sorted(modules_info.keys())]
 

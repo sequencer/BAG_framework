@@ -86,7 +86,7 @@ def read_yaml(fname):
         the object returned by YAML.
     """
     with open_file(fname, 'r') as f:
-        content = yaml.load(f)
+        content = yaml.safe_load(f)
 
     return content
 

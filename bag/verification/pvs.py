@@ -273,7 +273,7 @@ class PVS(VirtuosoChecker):
 
         # load default rcx options
         content = read_file(self.rcx_runset)
-        rcx_options = yaml.load(content)
+        rcx_options = yaml.safe_load(content)
 
         # setup inputs/outputs
         rcx_options['input_db']['design_cell_name'] = '{} {} {}'.format(cell_name, lay_view,

@@ -115,7 +115,7 @@ class ZMQDealer(object):
         if events:
             data = self.socket.recv()
             z = bag.io.fix_string(zlib.decompress(data))
-            obj = yaml.load(z)
+            obj = yaml.safe_load(z)
             self.log_obj('received data:', obj)
             return obj
         else:
@@ -270,7 +270,7 @@ class ZMQRouter(object):
         self.addr, data = self.socket.recv_multipart()
 
         z = bag.io.fix_string(zlib.decompress(data))
-        obj = yaml.load(z)
+        obj = yaml.safe_load(z)
         self.log_obj('received data:', obj)
         return obj
 

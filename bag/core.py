@@ -50,7 +50,7 @@ def _parse_yaml_file(fname):
     content = read_file(fname)
     # substitute environment variables
     content = string.Template(content).substitute(os.environ)
-    return yaml.load(content)
+    return yaml.safe_load(content)
 
 
 def _get_config_file_abspath(fname):

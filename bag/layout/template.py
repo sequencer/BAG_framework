@@ -347,7 +347,7 @@ class TemplateDB(MasterDB):
         res = tech_info.resolution
 
         with open(self._gds_lay_file, 'r') as f:
-            lay_info = yaml.load(f)
+            lay_info = yaml.safe_load(f)
             lay_map = lay_info['layer_map']
             via_info = lay_info['via_info']
 
